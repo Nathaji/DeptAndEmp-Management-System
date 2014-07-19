@@ -56,6 +56,13 @@ public class EmpDao extends HibernateDaoSupport implements IEmpDao{
 		return list.size()==0;
 	}
 	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public boolean noEmp(Integer dept){
+		List list = getHibernateTemplate().find("from employee where dept='" + dept +"'");
+		return list.isEmpty();
+	}
+	
 	 public Employee updateSynn(Employee u1, Employee u2, String[] arr){
          u2.setUsername(u1.getUsername());
       	if(!arr[0].equals("")){

@@ -33,6 +33,7 @@ public class LoginController extends MultiActionController{
 		}else{
 			Employee e = (Employee)list.get(0);
 			if(e.getIsAdmin()){
+				
 				return new ModelAndView("manage");
 			}else{
 				Map map = new HashMap();

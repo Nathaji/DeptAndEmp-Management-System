@@ -17,6 +17,7 @@
   </head>
   
   <body>
+    <h1><a href="main.jsp">Go to Main Page</a></h1>
     <h1>Personal Information</h1>
     <p><p><c:if test="${!empty message}">${message}</c:if><br><br>
     <table>

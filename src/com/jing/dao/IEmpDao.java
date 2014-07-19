@@ -11,5 +11,6 @@ public interface IEmpDao {
     public void update(Object o);
     public List isLoginSuccess(String username, String password);
     public boolean hasSameUsername(String username);
+    public boolean noEmp(Integer dept);
     public Employee updateSynn(Employee e1, Employee e2, String[] arr);
 }
