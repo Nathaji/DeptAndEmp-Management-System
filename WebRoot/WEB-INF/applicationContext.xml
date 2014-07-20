@@ -20,8 +20,8 @@
        <property name="dataSource"><ref bean="dataSource"/></property>
        <property name="mappingResources">
           <list>
-             <value>com\jing\dao\EmpDao.hbm.xml</value>
-             <value>com\jing\dao\DeptDao.hbm.xml</value>
+             <value>com\jing\domain\Employee.hbm.xml</value>
+             <value>com\jing\domain\Department.hbm.xml</value>
           </list>
        </property>
        <property name="hibernateProperties">
@@ -53,7 +53,27 @@
        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
     </bean>
     
+    <bean name="/LoginController.html" class="com.jing.controller.LoginController">
+       <property name="empDao" ref="EmpDao"></property>
+       <property name="deptDao" ref="DeptDao"></property>
+       <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
+    </bean>
     
+    <bean name="/EmpController.html" class="com.jing.controller.EmpController">
+       <property name="empDao" ref="EmpDao"></property>
+       <property name="deptDao" ref="DeptDao"></property>
+       <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
+    </bean>
+    
+    <bean name="/DeptController.html" class="com.jing.controller.DeptController">
+       <property name="empDao" ref="EmpDao"></property>
+       <property name="deptDao" ref="DeptDao"></property>
+       <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
+    </bean>
+  
+    <bean id="paraMethodResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+    <property name="paramName" value="method"/>
+    </bean>
     
     
 </beans>
