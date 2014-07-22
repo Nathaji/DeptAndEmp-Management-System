@@ -17,7 +17,7 @@
 
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <script language="javascript" src="checkInfo.js"></script>
     <form name="f1" method="post" action="UserController.html?method=insert">
        <p> <p>Userename:<input type="text"  name="username" /> <br><br>

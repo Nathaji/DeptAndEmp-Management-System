@@ -17,7 +17,7 @@
 
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <form name="f2" method="post" action="UserController.html?method=update&id=${user.id}">
        <p><p>ID: ${user.id}<br><br>
        <p><p>username: ${user.username}<br><br>

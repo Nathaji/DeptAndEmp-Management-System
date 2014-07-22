@@ -17,13 +17,15 @@
   </head>
   
   <body style="background-color: rgba(153,204,0,0.4)">
-    <table>
+    <h2 align="center">Department Information</h2>
+    <table border="1" align="center">
      
        <tr>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;deptNum</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;deptName</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;deptInfo</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;Operation</td>
         </tr>
         <c:forEach items="${list}" var="item" varStatus="row">
            <tr>
@@ -31,9 +33,9 @@
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptNum}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptName}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptInfo}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=findById&id=${item.id}">update</a></td>
-              <td>&nbsp;&nbsp;<a href="DeptController.html?method=delete&id=${item.id}">delete</a></td>
-              <td>&nbsp;&nbsp;<a href="DeptController.html?method=showEmp&id=${item.id}">employee</a></td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=findById&id=${item.id}">update</a>
+             <a href="DeptController.html?method=delete&id=${item.id}">delete</a>
+              <a href="DeptController.html?method=showEmp&id=${item.id}">employee</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -16,7 +16,7 @@
 
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <c:if test="${!empty message}">
        ${message}
     </c:if>

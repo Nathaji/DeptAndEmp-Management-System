@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body style="background-color: rgba(153,204,0,0.4)">
     <c:choose>
     <c:when test="${empty sessionScope.user}">
-     <h1 align="center">Welcome Page</h1>
+     <h1 align="center">Welcome</h1>
      <c:if test="${!empty message}">${message}</c:if>
     <form method="post" action="LoginController.html?method=login">
         <p><p>Username:<input type="text" name="username" /> <br><br>

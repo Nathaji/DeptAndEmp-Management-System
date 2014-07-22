@@ -16,7 +16,7 @@
 
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <form name="f1" method="post" action="DeptController.html?method=insert">
        <p> <p>deptNum:<input type="text" name="deptNum" /><br><br>
        <p> <p>deptName:<input type="text" name="deptName" /><br><br>

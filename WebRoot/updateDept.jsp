@@ -16,7 +16,7 @@
 
   </head>
   
-  <body>
+ <body style="background-color: rgba(153,204,0,0.4)">
     <form name="f2" method="post" action="DeptController.html?method=update&id=${dept.id}">
        <p><p>dept ID: ${dept.id}<br><br>
        <p><p>Old deptNum: ${dept.deptNum}<br><br>
