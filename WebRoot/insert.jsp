@@ -26,7 +26,7 @@
        <p> <p>Phone:<input type="text" name="phone" /><br><br>
        <p> <p>deptNum:<input type="text" name="deptNum" /><br><br>
        <p> <p>isAdmin:<input type="text" name="isAdmin" /><br><br>   
-       <input name="Button" type="button"  value="submit" onClick="check(f1)"><br><br>
+       <input name="Button" type="button"  value="submit" onClick="checkEmp(f1)"><br><br>
        <input type="reset" value="reset" name="reset" ><br><br>
     </form>
   </body>

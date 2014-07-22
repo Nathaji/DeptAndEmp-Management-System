@@ -33,6 +33,7 @@ public class DeptController extends MultiActionController{
     
     public ModelAndView insert(HttpServletRequest req, HttpServletResponse res){
     	Dept dept = new Dept();
+    	dept.setdeptNum(Integer.valueOf(req.getParameter("deptNum")));
     	dept.setdeptName(req.getParameter("deptName"));
     	dept.setdeptInfo(req.getParameter("deptInfo"));
     	this.deptDao.insert(dept);

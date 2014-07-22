@@ -16,7 +16,7 @@
 
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <table>
      
        <tr>
@@ -37,6 +37,7 @@
             </tr>
         </c:forEach>
     </table>
+    <p><p><a href="insertDept.jsp">insert new department</a><br><br>
     <p><p><a href="logout.jsp">logout</a><br><br>
   </body>
 </html>

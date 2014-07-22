@@ -39,9 +39,10 @@ public class LoginController extends MultiActionController{
      		req.getSession().setAttribute("user", user);
      		Integer deptNum = user.getdeptNum();
      		List<Object> list = this.loginService.getuserDao().findByDept(deptNum);
-     		
+     		Dept dept = this.loginService.getdeptDao().findByDeptNum(deptNum);
      		ModelAndView mv = new ModelAndView("display");
      		mv.addObject("list",list);
+     		mv.addObject("dept",dept);
         	return mv;
      	 }else{
      		 return new ModelAndView("index", "message", "Wrong information");

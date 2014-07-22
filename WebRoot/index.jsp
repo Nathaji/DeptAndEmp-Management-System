@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <c:choose>
     <c:when test="${empty sessionScope.user}">
      <h1 align="center">Welcome Page</h1>

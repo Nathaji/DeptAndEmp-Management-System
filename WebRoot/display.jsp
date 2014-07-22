@@ -17,8 +17,8 @@
 
   </head>
   
-  <body>
-    
+  <body style="background-color: rgba(153,204,0,0.4)">
+    <h2 align="center">Personal Information</h2>
     <table>
        <tr>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
@@ -47,6 +47,20 @@
               </c:if>
             </tr>
         </c:forEach>
+    </table>
+    
+    <h2 align="center">Department Information</h2>
+    <table>
+       <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;Department Number</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;Department Name</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;Department Information</td>
+       </tr>
+       <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;${dept.deptNum}</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;${dept.deptName}</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;${dept.deptInfo}</td>
+       </tr>
     </table>
     <p><p><a href="UserController.html?method=findByAll">see all employee</a><br>
     <p><p><a href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to your department</a><br>

@@ -14,12 +14,20 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 public class UserController extends MultiActionController{
     private IUserDao userDao;
+    private IDeptDao deptDao;
     
     public IUserDao getuserDao(){
     	return this.userDao;
     }
     public void setuserDao(IUserDao userDao){
     	this.userDao = userDao;
+    }
+    
+    public IDeptDao getdeptDao(){
+    	return this.deptDao;
+    }
+    public void setdeptDao(IDeptDao deptDao){
+    	this.deptDao = deptDao;
     }
    
     public ModelAndView insert(HttpServletRequest req, HttpServletResponse res) throws IOException{
@@ -29,7 +37,6 @@ public class UserController extends MultiActionController{
     	u.setcity(req.getParameter("city"));
     	u.setphone(req.getParameter("phone"));
     	u.setdeptNum(Integer.valueOf(req.getParameter("deptNum")));
-    	
     	u.setisAdmin(req.getParameter("isAdmin"));
         this.userDao.insert(u);
         ModelAndView mv = new ModelAndView("index");
@@ -59,6 +66,7 @@ public class UserController extends MultiActionController{
   
     public ModelAndView findByAll(HttpServletRequest req, HttpServletResponse res){
     	List<Object> list = this.userDao.findByAll();
+    	
     	return new ModelAndView("display","list", list);
     }
     
@@ -79,7 +87,11 @@ public class UserController extends MultiActionController{
     public ModelAndView findByDept(HttpServletRequest req, HttpServletResponse res){
     	Integer deptNum = Integer.valueOf(req.getParameter("deptNum"));
     	List<Object> list = this.userDao.findByDept(deptNum);
-    	return new ModelAndView("display","list",list);
+ 		Dept dept = this.deptDao.findByDeptNum(deptNum);
+ 		ModelAndView mv = new ModelAndView("display");
+ 		mv.addObject("list", list);
+ 		mv.addObject("dept",dept);
+    	return mv;
     }
     
 }

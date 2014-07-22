@@ -18,9 +18,10 @@
   
   <body>
     <form name="f1" method="post" action="DeptController.html?method=insert">
+       <p> <p>deptNum:<input type="text" name="deptNum" /><br><br>
        <p> <p>deptName:<input type="text" name="deptName" /><br><br>
        <p> <p>deptInfo:<input type="text" name="deptInfo" /><br><br>  
-       <input type="submit"  value="submit" name="submit"><br><br>
+       <input name="Button" type="button"  value="submit" onclick="checkDept(f1)"><br><br>
        <input type="reset" value="reset" name="reset" ><br><br>
     </form>
   </body>

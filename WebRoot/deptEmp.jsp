@@ -16,7 +16,7 @@
 
   </head>
   
-  <body>
+  <body style="background-color: rgba(153,204,0,0.4)">
     <table> 
        <tr>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>

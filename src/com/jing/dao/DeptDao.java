@@ -41,7 +41,15 @@ public class DeptDao extends HibernateDaoSupport implements IDeptDao{
 	public Dept findById(Integer id) {
 		return (Dept)getHibernateTemplate().get(Dept.class, id);
 	}
+	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public Dept findByDeptNum(Integer deptNum) {
+		return (Dept)getHibernateTemplate().get(Dept.class, deptNum);
+	}
     
+	
+	
 	@Override
 	public Dept updateSynn(Dept deptNow, Dept dept, String[] arr){
 		dept.setid(deptNow.getid());
