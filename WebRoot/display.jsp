@@ -20,7 +20,6 @@
   <body>
     
     <table>
-     
        <tr>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Username</td>
@@ -32,7 +31,7 @@
         </tr>
         <c:forEach items="${list}" var="item" varStatus="row">
            <tr>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;${row.index + 1}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.username}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.password}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.city}</td>
@@ -49,5 +48,8 @@
             </tr>
         </c:forEach>
     </table>
+    <p><p><a href="UserController.html?method=findByAll">see all employee</a><br>
+    <p><p><a href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to your department</a><br>
+    <p><p><a href=logout.jsp>logout</a><br>
   </body>
 </html>

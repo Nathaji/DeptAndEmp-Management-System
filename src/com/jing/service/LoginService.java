@@ -1,7 +1,9 @@
 package com.jing.service;
 import com.jing.dao.*;
+
 import com.jing.domain.*;
 import java.util.*;
+
 
 public class LoginService implements ILoginService{
 	private IUserDao userDao;
@@ -39,6 +41,7 @@ public class LoginService implements ILoginService{
     	List<Object> list = this.userDao.findByUsernamePassword(u.getusername(), u.getpassword());
     	return (User)list.get(0);
     }
+    
     
    
      

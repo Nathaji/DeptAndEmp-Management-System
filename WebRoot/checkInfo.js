@@ -1,8 +1,7 @@
 
 function check(f){
-	if(f.username.value=="" || f.password.value=="" || f.city.value=="" ||f.phone.value==""){
-		alert("please enter all information");
-		f.username.focus();
+	if(f.username.value=="" || f.password.value==""){
+		alert("Username or password cannot be empty");
 		return;
 	}else{
 		f.submit();

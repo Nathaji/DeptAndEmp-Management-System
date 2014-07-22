@@ -18,6 +18,7 @@
   </head>
   
   <body>
+    <script language="javascript" src="checkInfo.js"></script>
     <form name="f1" method="post" action="UserController.html?method=insert">
        <p> <p>Userename:<input type="text"  name="username" /> <br><br>
        <p> <p>Password:<input type="password" name="password" /><br><br>
@@ -25,7 +26,7 @@
        <p> <p>Phone:<input type="text" name="phone" /><br><br>
        <p> <p>deptNum:<input type="text" name="deptNum" /><br><br>
        <p> <p>isAdmin:<input type="text" name="isAdmin" /><br><br>   
-       <input type="submit"  value="submit" name="submit"><br><br>
+       <input name="Button" type="button"  value="submit" onClick="check(f1)"><br><br>
        <input type="reset" value="reset" name="reset" ><br><br>
     </form>
   </body>

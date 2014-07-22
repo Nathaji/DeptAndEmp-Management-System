@@ -1,12 +1,14 @@
 package com.jing.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.*;
+
 import com.jing.dao.*;
 import com.jing.domain.*;
+
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -79,4 +81,5 @@ public class UserController extends MultiActionController{
     	List<Object> list = this.userDao.findByDept(deptNum);
     	return new ModelAndView("display","list",list);
     }
+    
 }
