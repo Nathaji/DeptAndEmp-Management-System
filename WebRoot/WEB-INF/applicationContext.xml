@@ -6,9 +6,9 @@
 	http://www.springframework.org/schema/tx 
   	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
     
-     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
-       <property name="url"><value>jdbc:oracle:thin:@...:orcl</value></property>
+       <property name="url"><value>jdbc:oracle:thin:@...:1521:orcl</value></property>
        <property name="username"><value>...</value></property>
        <property name="password"><value>...</value></property>
     </bean>
@@ -16,11 +16,14 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
        <property name="dataSource"><ref bean="dataSource"/></property>
        <property name="mappingResources">
-          <list>
-             <value>com/jing/domain/Employee.hbm.xml</value>
-             <value>com/jing/domain/Department.hbm.xml</value>
-          </list>
-       </property>
+            <list>
+                <value>com/jing/domain/User.hbm.xml</value>
+                <value>com/jing/domain/Dept.hbm.xml</value>
+            </list>
+        </property>
+       
+       
+       
        <property name="hibernateProperties">
           <props>
              <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
@@ -30,55 +33,58 @@
        </property>
     </bean>
     
-    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+    <!-- <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"></property>
         <property name="dataSource" ref="dataSource"/>
-    </bean>
-    
-    
-    <bean id="viewResolver" 
-    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
-        <property name="prefix"><value>/</value></property>
-        <property name="suffix"><value>.jsp</value></property>
-    </bean>
+    </bean> -->
     
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
       <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
     
-    <bean id="EmpDao" class="com.jing.dao.EmpDao">
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix"><value>/</value></property>
+        <property name="suffix"><value>.jsp</value></property>
+    </bean>
+    
+ 
+    <bean id="UserDao" class="com.jing.dao.UserDao">
        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
-       <property name="hibernateTemplate" ref="hibernateTemplate"/>
+       <!-- <property name="hibernateTemplate" ref="hibernateTemplate"/> -->
     </bean>
     
     <bean id="DeptDao" class="com.jing.dao.DeptDao">
        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
-       <property name="hibernateTemplate" ref="hibernateTemplate"/>
+       <!-- <property name="hibernateTemplate" ref="hibernateTemplate"/> -->
     </bean>
     
-    <bean name="/LoginController.html" class="com.jing.controller.LoginController">
-       <property name="empDao" ref="EmpDao"></property>
-       <property name="deptDao" ref="DeptDao"></property>
-       <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
+    
+    <bean id="LoginService" class="com.jing.service.LoginService">
+        <property name="userDao" ref="UserDao"></property>
+        <property name="deptDao" ref="DeptDao"></property>
     </bean>
     
-    <bean name="/EmpController.html" class="com.jing.controller.EmpController">
-       <property name="empDao" ref="EmpDao"></property>
-       <property name="deptDao" ref="DeptDao"></property>
+    <bean name="/UserController.html" class="com.jing.controller.UserController">
+       <property name="userDao" ref="UserDao"/>
        <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
     </bean>
     
     <bean name="/DeptController.html" class="com.jing.controller.DeptController">
-       <property name="empDao" ref="EmpDao"></property>
-       <property name="deptDao" ref="DeptDao"></property>
+       <property name="deptDao" ref="DeptDao"/>
+        <property name="userDao" ref="UserDao"/>
        <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
     </bean>
-  
-    <bean id="paraMethodResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
-        <property name="paramName" value="method"/>
+    
+    <bean name="/LoginController.html" class="com.jing.controller.LoginController">
+       <property name="loginService" ref="LoginService"/>
+       <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
     </bean>
     
+    <bean id="paraMethodResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+    <property name="paramName" value="method"/>
+    </bean>
+ 
     
 </beans>

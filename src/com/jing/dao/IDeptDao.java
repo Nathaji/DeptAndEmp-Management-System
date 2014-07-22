@@ -1,11 +1,13 @@
 package com.jing.dao;
 
 import java.util.List;
+import com.jing.domain.*;
 
 public interface IDeptDao {
-    public Object findById(Integer id);
+	public void insert(Dept dept);
+    public void update(Dept dept);
+    public void delete(Integer deptNum);
     public List<Object> findByAll();
-    public void delete(Integer id);
-    public void insert(Object o);
-    public void update(Object o);
+    public Dept findById(Integer deptNum);
+    public Dept updateSynn(Dept deptNow, Dept dept, String[] arr);
 }

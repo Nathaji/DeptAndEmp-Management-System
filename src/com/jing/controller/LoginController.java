@@ -1,49 +1,50 @@
 package com.jing.controller;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
 import com.jing.dao.*;
 import com.jing.domain.*;
+import com.jing.service.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import javax.servlet.http.HttpSession;
 
 public class LoginController extends MultiActionController{
-    private IEmpDao empDao;
-    private IDeptDao deptDao;
-    
-	public IEmpDao getEmpDao() {
-		return empDao;
-	}
-	public void setEmpDao(IEmpDao empDao) {
-		this.empDao = empDao;
-	}
-	public IDeptDao getDeptDao() {
-		return deptDao;
-	}
-	public void setDeptDao(IDeptDao deptDao) {
-		this.deptDao = deptDao;
-	}
-	
-	public ModelAndView login(HttpServletRequest req, HttpServletResponse res){
-		String loginUsername = req.getParameter("username");
-		String loginPassword = req.getParameter("password");
-		List list = this.empDao.isLoginSuccess(loginUsername, loginPassword);
-		if(list.isEmpty()){
-			return new ModelAndView("index", "message", "Username or Password is not correct!");
-		}else{
-			Employee e = (Employee)list.get(0);
-			if(e.getIsAdmin()){
-				
-				return new ModelAndView("manage");
-			}else{
-				Map map = new HashMap();
-				Department dept = (Department)this.deptDao.findById(e.getDept());
-				map.put("emp", e);
-				map.put("dept", dept);
-				return new ModelAndView("empInfo", "map", map);
-			}
-		}	
-	}
-    
-    
+     private LoginService loginService;
+     
+     public LoginService getloginService(){
+    	 return this.loginService;
+     }
+     
+     public void setloginService(LoginService loginService){
+    	 this.loginService = loginService;
+     }
+  
+     public ModelAndView login(HttpServletRequest req, HttpServletResponse res){
+    	 User u = new User();
+    	 u.setusername(req.getParameter("username"));
+     	 u.setpassword(req.getParameter("password"));
+     	 
+     	 if(this.loginService.checkAdmin(u)){
+     		User user = this.loginService.findAdmin(u);
+     		 List<Object> list = this.loginService.getdeptDao().findByAll();
+     		 req.getSession().setAttribute("user", user);
+     		 return new ModelAndView("displayAdmin","list",list);
+     	 }
+     	 
+     	 if(this.loginService.checkLogin(u)){
+     		List l = this.loginService.getuserDao().findByUsernamePassword(u.getusername(),u.getpassword());
+     		User user = (User)l.get(0);
+     		req.getSession().setAttribute("user", user);
+     		Integer deptNum = user.getdeptNum();
+     		List<Object> list = this.loginService.getuserDao().findByDept(deptNum);
+     		
+     		ModelAndView mv = new ModelAndView("display");
+     		mv.addObject("list",list);
+        	return mv;
+     	 }else{
+     		 return new ModelAndView("index", "message", "Wrong information");
+     	 }
+     }
 }

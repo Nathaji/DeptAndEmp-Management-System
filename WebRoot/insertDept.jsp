@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>My JSP 'register.jsp' starting page</title>
+    <title>My JSP 'insertDept.jsp' starting page</title>
 
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -17,13 +17,9 @@
   </head>
   
   <body>
-    <form name="f1" method="post" action="EmpController.html?method=insert">
-       <p> <p>Username:<input type="text"  name="username" /> <br><br>
-       <p> <p>Password:<input type="password" name="password" /><br><br>
-       <p> <p>Name:<input type="text" name="name" /><br><br>
-       <p> <p>Contact:<input type="text" name="contact" /><br><br>  
-       <p> <p>Department Number:<input type="text" name="dept" /><br><br>
-       <p> <p>Position:<input type="text" name="position" /><br><br>   
+    <form name="f1" method="post" action="DeptController.html?method=insert">
+       <p> <p>deptName:<input type="text" name="deptName" /><br><br>
+       <p> <p>deptInfo:<input type="text" name="deptInfo" /><br><br>  
        <input type="submit"  value="submit" name="submit"><br><br>
        <input type="reset" value="reset" name="reset" ><br><br>
     </form>
