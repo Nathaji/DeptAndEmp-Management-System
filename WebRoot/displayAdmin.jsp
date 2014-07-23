@@ -10,9 +10,8 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	
 
   </head>
   
@@ -27,6 +26,8 @@
           <td>&nbsp;&nbsp;&nbsp;&nbsp;deptInfo</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Operation</td>
         </tr>
+        
+        
         <c:forEach items="${list}" var="item" varStatus="row">
            <tr>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
@@ -38,8 +39,10 @@
               <a href="DeptController.html?method=showEmp&id=${item.id}">employee</a></td>
             </tr>
         </c:forEach>
+        
+        
     </table>
-    <p><p><a href="insertDept.jsp">insert new department</a><br><br>
+    <!-- <p><p><a href="insertDept.jsp">insert new department</a><br><br> -->
     <p><p><a href="logout.jsp">logout</a><br><br>
   </body>
 </html>

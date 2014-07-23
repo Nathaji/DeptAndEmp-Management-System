@@ -8,6 +8,7 @@ public interface IUserDao {
     public void delete(Integer id);
     public List<Object> findByAll();
     public List<Object> findByDept(Integer deptNum);
+    public List<Object> fuzzySearch(String keyword);
     public User findById(Integer id);
 	public User updateSynn(User userNow, User u, String[] arr);
 	public List<Object> findByUsernamePassword(String username, String password);

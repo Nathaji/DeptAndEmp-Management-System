@@ -83,7 +83,10 @@ public class DeptController extends MultiActionController{
     	Integer id = Integer.valueOf(req.getParameter("id"));
     	Dept dept = this.deptDao.findById(id);
     	List<Object> list = this.userDao.findByDept(dept.getdeptNum());
-    	return new ModelAndView("deptEmp","list",list);
+    	ModelAndView mv = new ModelAndView("deptEmp");
+    	mv.addObject("dept",dept);
+    	mv.addObject("list", list);
+    	return mv;
     }
   
 }

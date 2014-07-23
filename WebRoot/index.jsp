@@ -16,27 +16,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	
+	<style>
+
+		body{
+			background-image: url("http://bgfons.com/upload/leaves_texture1243.jpg");
+			background-size: cover;
+		}
+		
+		.login{
+			width:540px;
+			margin:80 auto;
+			padding: 40px;
+			height:400px;
+			background-color: rgba(153,204,0,0.7);
+			border-radius: 70px;
+			color: #4D4D00;
+			margin-top:150px;
+		}
+  </style>
   </head>
   
-  <body style="background-color: rgba(153,204,0,0.4)">
+  <body>
+    <div class="login">
     <c:choose>
     <c:when test="${empty sessionScope.user}">
      <h1 align="center">Welcome</h1>
      <c:if test="${!empty message}">${message}</c:if>
+     <br><br>
     <form method="post" action="LoginController.html?method=login">
-        <p><p>Username:<input type="text" name="username" /> <br><br>
-        <p><p>Password:<input type="password" name="password" /><br><br>
-        <p><p><input type="submit" value="login"><br><br>
-        <p><p><a href="insert.jsp">New User? Click to Register</a><br><br>  
+        <p align="center">Username:<input type="text" name="username" /></p>
+        <p align="center">Password:<input type="password" name="password" /></p>
+        <p align="center"><input type="submit" value="login"></p>
+        <br><br><br><br>
+        <p><a href="insert.jsp">New User? Click to Register</a> 
      </form>
      </c:when>
      
      <c:otherwise>
-        <p><p>Welcome! ${sessionScope.user.username}<br><br>
-        <p><p><c:if test="${!empty message}">${message}</c:if><br><br>
+        <p><p align="center">Welcome! ${sessionScope.user.username}<br><br>
+        <p><p align="center"><c:if test="${!empty message}">${message}</c:if><br><br>
         
         <c:choose>
            <c:when test="${sessionScope.user.isAdmin eq '0'}">
@@ -50,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <p><p><a href="logout.jsp">logout</a><br><br>
      </c:otherwise>
    </c:choose>
- 
+   </div>
     
   
 </html>

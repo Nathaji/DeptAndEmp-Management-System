@@ -34,6 +34,7 @@ public class UserController extends MultiActionController{
     	User u = new User();
     	u.setusername(req.getParameter("username"));
     	u.setpassword(req.getParameter("password"));
+    	u.setname(req.getParameter("name"));
     	u.setcity(req.getParameter("city"));
     	u.setphone(req.getParameter("phone"));
     	u.setdeptNum(Integer.valueOf(req.getParameter("deptNum")));
@@ -50,7 +51,7 @@ public class UserController extends MultiActionController{
     	User emp = this.userDao.findById(id);
     	
     	User u = new User();
-    	String[] arr = {req.getParameter("password"),req.getParameter("city"),req.getParameter("phone"),req.getParameter("deptNum")};
+    	String[] arr = {req.getParameter("password"),req.getParameter("city"),req.getParameter("phone"),req.getParameter("deptNum"),req.getParameter("name")};
     	if(userNow.getisAdmin().equals("0")){
     		this.userDao.update(this.userDao.updateSynn(emp, u, arr));
     	}else{
@@ -66,7 +67,6 @@ public class UserController extends MultiActionController{
   
     public ModelAndView findByAll(HttpServletRequest req, HttpServletResponse res){
     	List<Object> list = this.userDao.findByAll();
-    	
     	return new ModelAndView("display","list", list);
     }
     
@@ -92,6 +92,25 @@ public class UserController extends MultiActionController{
  		mv.addObject("list", list);
  		mv.addObject("dept",dept);
     	return mv;
+    }
+    
+    public ModelAndView goPersonal(HttpServletRequest req, HttpServletResponse res){
+    	Integer id = Integer.valueOf(req.getParameter("id"));
+    	User user = this.userDao.findById(id);
+    	Integer deptNum = user.getdeptNum();
+    	System.out.println("-----"+deptNum.toString());
+    	Dept dept = this.deptDao.findByDeptNum(deptNum);
+    	ModelAndView mv = new ModelAndView("personal");
+    	mv.addObject("user",user);
+    	mv.addObject("dept", dept);
+    	return mv;
+    }
+    
+    public ModelAndView search(HttpServletRequest req, HttpServletResponse res){
+    	 String keyword = req.getParameter("keyword");
+        List<Object> list = this.userDao.fuzzySearch(keyword);
+        return new ModelAndView("display", "list", list);
+       
     }
     
 }

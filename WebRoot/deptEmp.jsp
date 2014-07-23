@@ -10,41 +10,60 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	<style>
+
+		body{
+			background-image: url("http://bgfons.com/upload/leaves_texture1243.jpg");
+			background-size: cover;
+		}
+		
+		.info{
+			width:540px;
+			margin:80 auto;
+			padding: 40px;
+			height:400px;
+			background-color: rgba(153,204,0,0.7);
+			border-radius: 70px;
+			color: #4D4D00;
+			margin-top:150px;
+		}
+		
+		.nav{
+	       text-decoration: none;
+	       color: #4D4D00;
+         }
+         
+        
+  </style>
 
   </head>
   
   <body style="background-color: rgba(153,204,0,0.4)">
-    <h2 align="center">Employee in the Department</h2>
-    <table border="1" align="center"> 
-       <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;Username</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;Password</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;City</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;DeptNum</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;isAdmin</td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;Operation</td>
-        </tr>
-        <c:forEach items="${list}" var="item" varStatus="row">
-           <tr>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.username}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.password}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.city}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.phone}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptNum}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.isAdmin}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="UserController.html?method=findById&id=${item.id}">update</a>
-             <a href="UserController.html?method=delete&id=${item.id}">delete</a></td>
+      <div class="info">
+        <h2 align="center">Department Information</h2>
+        <h3 align="center">No: ${dept.deptNum}</h3> 
+        <h3 align="center">Department: ${dept.deptName}</h3> 
+        <h3 align="center">Description: ${dept.deptInfo}</h3>
         
-            </tr>
-        </c:forEach>
-    </table>
-    <p><p><a href="DeptController.html?method=findByAll">return</a><br><br>
-    
+        <c:if test="${not empty list}">
+           <h2 align="center">Department Employee</h2>
+           <c:forEach items="${list}" var="item" varStatus="row">
+              <h3 align="center">${item.name}</h3> 
+           </c:forEach>
+        </c:if>
+        
+       
+        <c:choose>
+        <c:when test="${sessionScope.user.isAdmin eq '0'}">
+           <p align="center"><a class="nav" href="DeptController.html?method=findByAll">&nbsp;&nbsp;&nbsp;&nbsp;return to admin</a>
+        </c:when>
+        <c:otherwise>
+            <p align="center"><a class="nav" href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to your dept</a>
+        </c:otherwise>
+        </c:choose>
+        <a class="nav" href=logout.jsp>&nbsp;&nbsp;&nbsp;&nbsp;logout</a><br>
+   </div>
+ 
   </body>
 </html>

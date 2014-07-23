@@ -1,4 +1,5 @@
 package com.jing.controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,8 @@ public class LoginController extends MultiActionController{
      public void setloginService(LoginService loginService){
     	 this.loginService = loginService;
      }
-  
+     
+    
      public ModelAndView login(HttpServletRequest req, HttpServletResponse res){
     	 User u = new User();
     	 u.setusername(req.getParameter("username"));
@@ -34,18 +36,20 @@ public class LoginController extends MultiActionController{
      	 }
      	 
      	 if(this.loginService.checkLogin(u)){
-     		List l = this.loginService.getuserDao().findByUsernamePassword(u.getusername(),u.getpassword());
+     		List<Object> l = this.loginService.getuserDao().findByUsernamePassword(u.getusername(),u.getpassword());
      		User user = (User)l.get(0);
      		req.getSession().setAttribute("user", user);
      		Integer deptNum = user.getdeptNum();
-     		List<Object> list = this.loginService.getuserDao().findByDept(deptNum);
      		Dept dept = this.loginService.getdeptDao().findByDeptNum(deptNum);
-     		ModelAndView mv = new ModelAndView("display");
-     		mv.addObject("list",list);
-     		mv.addObject("dept",dept);
+        	ModelAndView mv = new ModelAndView("personal");
+        	mv.addObject("user",user);
+        	mv.addObject("dept", dept);
         	return mv;
      	 }else{
      		 return new ModelAndView("index", "message", "Wrong information");
      	 }
      }
+     
+
+    
 }

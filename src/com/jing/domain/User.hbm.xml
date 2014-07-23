@@ -22,6 +22,11 @@
             </column>
        </property>
        
+       <property name="name">
+            <column name="name" not-null="true">
+            </column>
+       </property>
+       
         <property name="phone">
             <column name="phone" not-null="true">
             </column>

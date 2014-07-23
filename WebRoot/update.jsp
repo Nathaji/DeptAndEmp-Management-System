@@ -20,11 +20,13 @@
   <body style="background-color: rgba(153,204,0,0.4)">
     <form name="f2" method="post" action="UserController.html?method=update&id=${user.id}">
        <p><p>ID: ${user.id}<br><br>
-       <p><p>username: ${user.username}<br><br>
+       <p><p>Username: ${user.username}<br><br>
+       <p><p>old name: ${user.name}<br><br>
        <p><p>old password: ${user.password}<br><br>
        <p><p>old city: ${user.city}<br><br>
        <p><p>old phone: ${user.phone}<br><br>
        <p><p>old deptNum: ${user.deptNum}<br><br>
+       <p> <p>Update Name:<input type="text" name="name" /><br><br>
        <p> <p>Update Password:<input type="password" name="password" /><br><br>
        <p> <p>Update City:<input type="text" name="city" /><br><br>
        <p> <p>Update Phone:<input type="text" name="phone" /><br><br> 

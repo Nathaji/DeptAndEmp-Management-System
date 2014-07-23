@@ -1,22 +1,24 @@
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>My JSP 'logout.jsp' starting page</title>
+    <title>PersonalPage</title>
 
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	
 	<style>
-	    body{
+
+		body{
 			background-image: url("http://bgfons.com/upload/leaves_texture1243.jpg");
 			background-size: cover;
 		}
 		
-		.logout{
+		.info{
 			width:540px;
 			margin:80 auto;
 			padding: 40px;
@@ -26,19 +28,21 @@
 			color: #4D4D00;
 			margin-top:150px;
 		}
-	</style>
+  </style>
 
   </head>
   
   <body>
-    <div class="logout">
-    
-    <c:if test="${!empty message}">
-       ${message}
-    </c:if>
-    <%session.invalidate();%>
-    <p><p align="center">You have successfully log out<br><br>
-    <p align="center"><a href="index.jsp">Click here to login</a>
-    </div>
+    <div class="info">
+    <h2 align="center">Personal Information</h2>
+    <h3 align="center">Username: ${user.username}</h3> 
+    <h3 align="center">Name: ${user.name}</h3> 
+    <h3 align="center">City: ${user.city}</h3>
+    <h3 align="center">Phone: ${user.phone}</h3>
+    <h3 align="center">Department: ${dept.deptName}</h3>
+    <h3 align="center">Department Info: ${dept.deptInfo}</h3>
+   <p><a href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to department</a><br>
+    <p><a href=logout.jsp>logout</a><br>
+   </div>
   </body>
 </html>

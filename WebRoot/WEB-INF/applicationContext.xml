@@ -8,7 +8,7 @@
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
-       <property name="url"><value>jdbc:oracle:thin:@...:1521:orcl</value></property>
+       <property name="url"><value>jdbc:oracle:thin:@...:orcl</value></property>
        <property name="username"><value>...</value></property>
        <property name="password"><value>...</value></property>
     </bean>

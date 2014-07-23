@@ -50,6 +50,12 @@ public class UserDao extends HibernateDaoSupport implements IUserDao{
 	}
 	
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public List<Object> fuzzySearch(String keyword){
+		return getHibernateTemplate().find("from User u where u.name like ?", "%"+keyword+"%");
+	}
+	
+	@Override
 	public List<Object> findByUsernamePassword(String username, String password){
 		return (List<Object>)getHibernateTemplate().find("from User u where u.username='"+username+"' and u.password='"+password+"'");	
 	}
@@ -85,6 +91,12 @@ public class UserDao extends HibernateDaoSupport implements IUserDao{
      	}else{
      		u2.setdeptNum(u1.getdeptNum());
      	}
+     	
+     	if(!arr[4].equals("")){
+            u2.setname(arr[4]);
+  	    }else{
+  		     u2.setname(u1.getname());
+  	    }
      	
      	u2.setisAdmin(u1.getisAdmin());
    
