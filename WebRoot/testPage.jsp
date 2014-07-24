@@ -18,6 +18,7 @@
   
   <body>
     <h2 align="center">Department Employee</h2>
+    <h3 align="center"><a href="FileController.html?method=export">export to PDF</a></h3>
     <table border="1" align="center" >
        <tr>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>

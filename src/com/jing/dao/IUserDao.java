@@ -7,6 +7,7 @@ public interface IUserDao {
     public void update(User u);
     public void delete(Integer id);
     public List<Object> findByAll(int page, int pageSize);
+    public List<Object> findAll();
     public int findNum(String cmd);
     public List<Object> findByDept(Integer deptNum);
     public List<Object> fuzzySearch(String keyword);

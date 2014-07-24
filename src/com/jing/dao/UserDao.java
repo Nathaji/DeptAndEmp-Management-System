@@ -44,7 +44,14 @@ public class UserDao extends HibernateDaoSupport implements IUserDao{
 		List<Object> list = q.list();
 		return list;
 	}
-
+	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public List<Object> findAll() {
+		return getHibernateTemplate().find("from User u order by id asc");
+	}
+    
+	
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	public User findById(Integer id) {

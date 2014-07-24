@@ -26,9 +26,14 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 import com.jing.dao.*;
-
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 public class FileController extends MultiActionController{
     private IFileDao fileDao;
+    private IUserDao userDao;
     
     public IFileDao getfileDao(){
     	return this.fileDao;
@@ -36,6 +41,14 @@ public class FileController extends MultiActionController{
     
     public void setfileDao(IFileDao fileDao){
     	this.fileDao = fileDao;
+    }
+    
+    public IUserDao getuserDao(){
+    	return this.userDao;
+    }
+    
+    public void setuserDao(IUserDao userDao){
+    	this.userDao = userDao;
     }
     
     public ModelAndView upload(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException{
@@ -139,6 +152,69 @@ public class FileController extends MultiActionController{
     	return new ModelAndView("download","list",list);
     }
     
-    
+    public ModelAndView export(HttpServletRequest req, HttpServletResponse res) throws Exception{
+    	
+//    	out.clear();
+//    	out = pageContext.pushBody();
+    	
+    	res.setHeader("Content-Disposition","attachment;filename=stuInfo.pdf");
+    	res.setContentType("application/x-download; charset=utf-8");
+    	
+    	
+    	List<Object> list = this.userDao.findAll();
+    	
+    	BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA,
+    			BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+    	
+    	Font font = new Font(bf, 12, Font.BOLD); 
+    	Document document = new Document(PageSize.A4);			
+    	PdfWriter.getInstance(document, res.getOutputStream());	
+    	document.open();										
+    	String title = "Employee Contacts"; 						
+    	Paragraph paragraph = new Paragraph(title, font); 				
+    	paragraph.setAlignment(Paragraph.ALIGN_CENTER);			
+    	document.add(paragraph);								
+    	PdfPTable table = new PdfPTable(3);						
+    	table.setSpacingBefore(30f);								
+    	String[] tableTitle = { "name", "phone", "city"};	
+    	
+    	
+    	
+    	for (int i = 0; i < tableTitle.length; i++) {						
+    		paragraph = new Paragraph(tableTitle[i], new Font(bf, 10,Font.BOLD));
+    		PdfPCell cell = new PdfPCell(paragraph);					
+    		cell.setHorizontalAlignment(Element.ALIGN_CENTER);		
+    		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+    		table.addCell(cell);									
+    	}
+    	
+    	for(int i=0;i<list.size();i++){
+    	    User u = (User)list.get(i);
+    	    PdfPCell cell1 = new PdfPCell(new Paragraph(u.getname(),
+       					new Font(bf, 10)));
+       	    cell1.setHorizontalAlignment(Element.ALIGN_CENTER);	
+       	    cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);		
+       		table.addCell(cell1);	
+       		
+       		
+       		
+       		PdfPCell cell2 = new PdfPCell(new Paragraph(u.getphone(),
+       					new Font(bf, 10)));	
+       		cell2.setHorizontalAlignment(Element.ALIGN_CENTER);	
+       	    cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);		
+       		table.addCell(cell2);
+       		
+       		
+       		
+       		PdfPCell cell3 = new PdfPCell(new Paragraph(u.getcity(),
+       					new Font(bf, 10)));	
+       		cell3.setHorizontalAlignment(Element.ALIGN_CENTER);	
+       	    cell3.setVerticalAlignment(Element.ALIGN_MIDDLE);		
+       		table.addCell(cell3);
+    	}
+    	document.add(table);									
+    	document.close();
+    	return null;
+    }
     
 }

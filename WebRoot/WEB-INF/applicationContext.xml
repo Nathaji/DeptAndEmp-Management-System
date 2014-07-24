@@ -85,6 +85,7 @@
     </bean>
     
     <bean name="/FileController.html" class="com.jing.controller.FileController">
+       <property name="userDao" ref="UserDao"></property>
        <property name="fileDao" ref="FileDao"/>
        <property name="methodNameResolver"><ref bean="paraMethodResolver"/></property>
     </bean>
