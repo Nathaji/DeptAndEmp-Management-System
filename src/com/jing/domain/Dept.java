@@ -6,6 +6,7 @@ public class Dept {
    private Integer deptNum;
    private String deptName;
    private String deptInfo;
+   private Integer empNum;
    
    public Integer getid(){
 	   return this.id;
@@ -45,6 +46,13 @@ public class Dept {
 	  this.deptInfo = deptInfo;
   }
    
+   public Integer getempNum(){
+	   return this.empNum;
+   }
+   
+   public void setempNum(Integer empNum){
+	   this.empNum = empNum;
+   }
   
    
 }

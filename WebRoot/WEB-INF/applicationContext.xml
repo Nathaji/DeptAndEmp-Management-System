@@ -72,6 +72,8 @@
         <property name="deptDao" ref="DeptDao"></property>
     </bean>
     
+    
+    
     <bean name="/UserController.html" class="com.jing.controller.UserController">
        <property name="userDao" ref="UserDao"/>
        <property name="deptDao" ref="DeptDao"/>

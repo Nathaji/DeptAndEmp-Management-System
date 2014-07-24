@@ -1,5 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="
+org.jfree.chart.ChartFactory,
+org.jfree.chart.JFreeChart,
+org.jfree.chart.StandardChartTheme,
+org.jfree.data.general.DefaultPieDataset,
+org.jfree.chart.servlet.ServletUtilities"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -27,8 +33,11 @@
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Operation</td>
         </tr>
         
-        
+        <% DefaultPieDataset ds = new DefaultPieDataset();%>
         <c:forEach items="${list}" var="item" varStatus="row">
+           <c:set var="name" value="${item.deptName}" scope="request"></c:set>
+           <c:set var="number" value="${item.empNum}" scope="request"></c:set>
+           <% ds.setValue(session.getAttribute("name").toString(), Integer.parseInt(session.getAttribute("number").toString())); %>
            <tr>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptNum}</td>
@@ -36,12 +45,20 @@
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptInfo}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=findById&id=${item.id}">update</a>
              <a href="DeptController.html?method=delete&id=${item.id}">delete</a>
-              
             </tr>
-        </c:forEach>
-        
-        
+        </c:forEach>  
     </table>
+    
+    <h3 align="center">Employee Ratio Chart</h3>
+    
+    <%
+      JFreeChart chart = ChartFactory.createPieChart3D("Department-Employee Ratio", ds, true, true, false);
+      String fileName = ServletUtilities.saveChartAsPNG(chart,450,300,null,session);
+      String graphURL = request.getContextPath() + "/DisplayChart?filename=" + fileName;
+     %>
+    
+     <img src="<%=graphURL%>">
+         
     <!-- <p><p><a href="insertDept.jsp">insert new department</a><br><br> -->
     <p><p><a href="logout.jsp">logout</a><br><br>
   </body>

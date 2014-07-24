@@ -120,7 +120,6 @@ public class UserController extends MultiActionController{
     	String keyword = req.getParameter("keyword");
         List<Object> list = this.userDao.fuzzySearch(keyword);
         return new ModelAndView("display", "list", list);
-       
     }
     
 }

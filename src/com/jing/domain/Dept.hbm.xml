@@ -26,6 +26,11 @@
             <column name="deptInfo"  not-null="true">
             </column>
       </property>
+      
+      <property name="empNum">
+            <column name="empNum">
+            </column>
+      </property>
 
    </class>
 </hibernate-mapping>
