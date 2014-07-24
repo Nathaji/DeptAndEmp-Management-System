@@ -50,6 +50,7 @@ public class DeptDao extends HibernateDaoSupport implements IDeptDao{
     
 	
 	
+	
 	@Override
 	public Dept updateSynn(Dept deptNow, Dept dept, String[] arr){
 		dept.setid(deptNow.getid());

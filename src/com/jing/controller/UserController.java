@@ -66,8 +66,16 @@ public class UserController extends MultiActionController{
   
   
     public ModelAndView findByAll(HttpServletRequest req, HttpServletResponse res){
-    	List<Object> list = this.userDao.findByAll();
-    	return new ModelAndView("display","list", list);
+    	int page = Integer.parseInt(req.getParameter("page"));
+    	int pageSize = Integer.parseInt(req.getParameter("pageSize"));
+    	int totalEmp = this.userDao.findNum("all");
+    	int totalPage = totalEmp/pageSize + 1;
+    	List<Object> list = this.userDao.findByAll(page, pageSize);
+    	ModelAndView mv = new ModelAndView("testPage");
+    	mv.addObject("list", list);
+    	mv.addObject("page",page);
+    	mv.addObject("totalPage",totalPage);
+    	return mv;
     }
     
     public ModelAndView delete(HttpServletRequest req, HttpServletResponse res){
@@ -94,6 +102,8 @@ public class UserController extends MultiActionController{
     	return mv;
     }
     
+    
+    
     public ModelAndView goPersonal(HttpServletRequest req, HttpServletResponse res){
     	Integer id = Integer.valueOf(req.getParameter("id"));
     	User user = this.userDao.findById(id);
@@ -107,7 +117,7 @@ public class UserController extends MultiActionController{
     }
     
     public ModelAndView search(HttpServletRequest req, HttpServletResponse res){
-    	 String keyword = req.getParameter("keyword");
+    	String keyword = req.getParameter("keyword");
         List<Object> list = this.userDao.fuzzySearch(keyword);
         return new ModelAndView("display", "list", list);
        

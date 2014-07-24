@@ -80,14 +80,12 @@ public class DeptController extends MultiActionController{
     	return new ModelAndView("updateDept", "dept", dept);
     }
     
-    public ModelAndView showEmp(HttpServletRequest req, HttpServletResponse res){
+    public ModelAndView showDept(HttpServletRequest req, HttpServletResponse res){
     	Integer id = Integer.valueOf(req.getParameter("id"));
     	Dept dept = this.deptDao.findById(id);
-    	List<Object> list = this.userDao.findByDept(dept.getdeptNum());
-    	ModelAndView mv = new ModelAndView("deptEmp");
-    	mv.addObject("dept",dept);
-    	mv.addObject("list", list);
-    	return mv;
+    	return new ModelAndView("deptEmp","dept",dept);
     }
+    
+    
   
 }

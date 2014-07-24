@@ -2,6 +2,9 @@ package com.jing.dao;
 
 import java.util.List;
 import java.util.Map;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
@@ -33,8 +36,13 @@ public class UserDao extends HibernateDaoSupport implements IUserDao{
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public List<Object> findByAll() {
-		return getHibernateTemplate().find("from User u order by id asc");
+	public List<Object> findByAll(int page, int pageSize) {
+		Session session2 = getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = session2.createQuery("from User order by id asc");
+		q.setFirstResult((page-1)*pageSize);
+		q.setMaxResults(pageSize);
+		List<Object> list = q.list();
+		return list;
 	}
 
 	@Override
@@ -58,6 +66,15 @@ public class UserDao extends HibernateDaoSupport implements IUserDao{
 	@Override
 	public List<Object> findByUsernamePassword(String username, String password){
 		return (List<Object>)getHibernateTemplate().find("from User u where u.username='"+username+"' and u.password='"+password+"'");	
+	}
+	
+	@Override
+	public int findNum(String cmd){
+		if(cmd.equals("all")){
+			return getHibernateTemplate().find("from User").size();
+		}else{
+			return -1;
+		}
 	}
 	
 	@Override

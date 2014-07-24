@@ -23,7 +23,6 @@
     <h2 align="center">Department Employee</h2>
     <table border="1" align="center" >
        <tr>
-         
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Name</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Department</td>
@@ -33,10 +32,9 @@
         
         <c:forEach items="${list}" var="item" varStatus="row">
            <tr>
-      
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="UserController.html?method=goPersonal&id=${item.id}">${item.name}</a></td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=showEmp&id=${item.deptNum}">${item.deptNum}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=showDept&id=${item.deptNum}">${item.deptNum}</a></td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.isAdmin}</td>
               <c:if test ="${sessionScope.user.id == item.id}">
                 <td>&nbsp;&nbsp;<a href="UserController.html?method=findById&id=${item.id}">update</a>
@@ -45,9 +43,7 @@
             </tr>
         </c:forEach>
     </table>
-    
-    
-    
+  
 
     <c:if test="${not empty dept}">
     <h2 align="center">Department Information</h2>
@@ -67,7 +63,7 @@
     
     
     <p><p><a href="UserController.html?method=goPersonal&id=${sessionScope.user.id}">personal page</a>
-    <p><p><a href="UserController.html?method=findByAll">see all employee</a><br>
+    <p><p><a href="UserController.html?method=findByAll&page=1&pageSize=4">see all employee</a><br>
     <p><p><a href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to your department</a><br>
     <p><p><a href=logout.jsp>logout</a><br>
   </body>

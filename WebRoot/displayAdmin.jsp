@@ -36,7 +36,7 @@
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptInfo}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=findById&id=${item.id}">update</a>
              <a href="DeptController.html?method=delete&id=${item.id}">delete</a>
-              <a href="DeptController.html?method=showEmp&id=${item.id}">employee</a></td>
+              
             </tr>
         </c:forEach>
         

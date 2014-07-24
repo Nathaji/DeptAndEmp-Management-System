@@ -36,6 +36,7 @@
            </tr>
        </c:forEach>
     </table>
+    
     <p><a href="personal.jsp">return to personal page</a></p>
     
     

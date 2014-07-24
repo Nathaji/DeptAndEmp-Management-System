@@ -45,15 +45,7 @@
         <h3 align="center">No: ${dept.deptNum}</h3> 
         <h3 align="center">Department: ${dept.deptName}</h3> 
         <h3 align="center">Description: ${dept.deptInfo}</h3>
-        
-        <c:if test="${not empty list}">
-           <h2 align="center">Department Employee</h2>
-           <c:forEach items="${list}" var="item" varStatus="row">
-              <h3 align="center">${item.name}</h3> 
-           </c:forEach>
-        </c:if>
-        
-       
+     
         <c:choose>
         <c:when test="${sessionScope.user.isAdmin eq '0'}">
            <p align="center"><a class="nav" href="DeptController.html?method=findByAll">&nbsp;&nbsp;&nbsp;&nbsp;return to admin</a>
