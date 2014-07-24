@@ -15,11 +15,6 @@
      </init-param>
      
      <init-param>
-        <param-name>log4jConfigLocation</param-name>
-        <param-value>log4j.properties</param-value>
-     </init-param>
-     
-     <init-param>
         <param-name>webAppRootKey</param-name>  
         <param-value>project</param-value>
      </init-param>

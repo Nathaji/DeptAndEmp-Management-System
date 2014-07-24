@@ -10,7 +10,8 @@ public class User {
     private String city;
     private Integer deptNum;
     private String isAdmin;
-
+ 
+    
     public Integer getid(){
     	return this.id;
     }
@@ -43,6 +44,7 @@ public class User {
     	return this.isAdmin;
     }
     
+   
     public void setid(Integer id){
     	this.id = id;
     }
@@ -73,5 +75,7 @@ public class User {
     public void setisAdmin(String isAdmin){
     	this.isAdmin = isAdmin;
     }
+    
+    
    
 }

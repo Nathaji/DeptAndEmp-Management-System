@@ -31,6 +31,7 @@
        <p> <p>Update City:<input type="text" name="city" /><br><br>
        <p> <p>Update Phone:<input type="text" name="phone" /><br><br> 
        <p> <p>Update deptNum:<input type="text" name="deptNum" /><br><br> 
+      
        <input type="submit" value="confirm" name="submit"/><br><br>
        <input type="reset" value="reset" name="reset" /><br><br>
     </form>

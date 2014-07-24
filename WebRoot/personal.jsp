@@ -41,7 +41,10 @@
     <h3 align="center">Phone: ${user.phone}</h3>
     <h3 align="center">Department: ${dept.deptName}</h3>
     <h3 align="center">Department Info: ${dept.deptInfo}</h3>
-   <p><a href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to department</a><br>
+    
+    <a href="uploadFile.jsp">Upload File</a>
+    <a href="FileController.html?method=showFile">Download File</a>
+    <p><a href="UserController.html?method=findByDept&deptNum=${sessionScope.user.deptNum}">return to department</a><br>
     <p><a href=logout.jsp>logout</a><br>
    </div>
   </body>

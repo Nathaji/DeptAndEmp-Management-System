@@ -23,6 +23,7 @@
     <h2 align="center">Department Employee</h2>
     <table border="1" align="center" >
        <tr>
+         
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Name</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Department</td>
@@ -32,6 +33,7 @@
         
         <c:forEach items="${list}" var="item" varStatus="row">
            <tr>
+      
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="UserController.html?method=goPersonal&id=${item.id}">${item.name}</a></td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=showEmp&id=${item.deptNum}">${item.deptNum}</td>
