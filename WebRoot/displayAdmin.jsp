@@ -37,7 +37,7 @@ org.jfree.chart.servlet.ServletUtilities"%>
         <c:forEach items="${list}" var="item" varStatus="row">
            <c:set var="name" value="${item.deptName}" scope="request"></c:set>
            <c:set var="number" value="${item.empNum}" scope="request"></c:set>
-           <% ds.setValue(session.getAttribute("name").toString(), Integer.parseInt(session.getAttribute("number").toString())); %>
+           <% ds.setValue(request.getAttribute("name").toString(), Integer.parseInt(request.getAttribute("number").toString())); %>
            <tr>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.deptNum}</td>
@@ -57,7 +57,7 @@ org.jfree.chart.servlet.ServletUtilities"%>
       String graphURL = request.getContextPath() + "/DisplayChart?filename=" + fileName;
      %>
     
-     <img src="<%=graphURL%>">
+     <p align="center"><img src="<%=graphURL%>"></p>
          
     <!-- <p><p><a href="insertDept.jsp">insert new department</a><br><br> -->
     <p><p><a href="logout.jsp">logout</a><br><br>
