@@ -13,16 +13,23 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+    
+    <style>
+       body{
+           background-color: rgba(153,204,0,0.7);
+       }
+    </style>
   </head>
   
-  <body>
-    <h2 align="center">Department Employee</h2>
+  <body >
+    <h2 align="center">Employee Contacts</h2>
     <h3 align="center"><a href="FileController.html?method=export">export to PDF</a></h3>
     <table border="1" align="center" >
        <tr>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;ID</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Name</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;City</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;Department</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp;isAdmin</td>
         </tr>
@@ -31,6 +38,8 @@
            <tr>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.id}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="UserController.html?method=goPersonal&id=${item.id}">${item.name}</a></td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.city}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.phone}</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="DeptController.html?method=showEmp&id=${item.deptNum}">${item.deptNum}</a></td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.isAdmin}</td>
             </tr>
