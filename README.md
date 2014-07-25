@@ -8,20 +8,20 @@ Simple division management system using Spring+Hibernate
 
 * Login/Registration Page
 
-![test1](/images/login.PNG)
+![test1](/images/login.png)
 
 * Employee Personal Page
 
-![test1](/images/personal.PNG)
+![test2](/images/personal.png)
 
 * Admin Page
 
-![test1](/images/admin.PNG)
+![test3](/images/admin.png)
 
 * Department Page
 
-![test1](/images/dept.PNG)
+![test4](/images/dept.png)
 
 * All Employee Contacts Page
 
-![test1](/images/emp.PNG)
+![test5](/images/emp.png)
