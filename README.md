@@ -3,7 +3,7 @@ dept-management-system
 
 ## Description
 Simple division management system using Spring+Hibernate
-
+Other techniques include JS, JSP, JSTL, JQueryValidation, etc.
 ## Some Features
 
 * user login and registration, all user and department information are stored in Orable database
